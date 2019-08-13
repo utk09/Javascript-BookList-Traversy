@@ -14,19 +14,21 @@ class Book {
 
 class UI {
     static displayBooks() {
-        const storedBooks = [{
+        const StoredBooks = [{
                 title: 'John Doe',
                 author: 'Jane Doe',
                 isbn: '123456789'
             },
             {
                 title: 'Vroom Vroom',
-                author: 'Lallanop',
+                author: 'Lallantop',
                 isbn: '234237493'
             }
         ];
 
         const books = StoredBooks;
+
+        console.log(books);
 
         books.forEach((book) => UI.addBookToList(book));
     }
@@ -40,9 +42,11 @@ class UI {
         <td>${book.title}</td>
         <td>${book.author}</td>
         <td>${book.isbn}</td>
-        <td><a href="#" class = "btn btn-danger btn-sm delete">X</a></td>
-        `;
+        <td><a href="#" class = "btn btn-danger btn-sm delete">'x'</a></td>
+        `
         list.appendChild(row);
+
+
     }
 }
 
@@ -50,8 +54,21 @@ class UI {
 
 // Event: Display Books
 
-document.addEventListener('DOMContentLoaded', UI.displayBooks;
+document.addEventListener('DOMContentLoaded', UI.displayBooks);
 
 // Evnt: Add a Book
+
+document.querySelector('#book-form').addEventListener('submit', (e) => {
+    // Get form values
+    const title = document.querySelector('#title').value;
+    const author = document.querySelector('#author').value;
+    const isbn = document.querySelector('#isbn').value;
+
+    // Instantiate Book
+    const book = new Book(title, author, isbn);
+
+    console.log(book)
+
+});
 
 // Event: Remove a Book
