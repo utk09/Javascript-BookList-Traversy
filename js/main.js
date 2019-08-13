@@ -41,13 +41,16 @@ class UI {
         <td>${book.author}</td>
         <td>${book.isbn}</td>
         <td><a href="#" class = "btn btn-danger btn-sm delete">X</a></td>
-        `
+        `;
+        list.appendChild(row);
     }
 }
 
 // Store Class: Handles Storage
 
 // Event: Display Books
+
+document.addEventListener('DOMContentLoaded', UI.displayBooks;
 
 // Evnt: Add a Book
 
