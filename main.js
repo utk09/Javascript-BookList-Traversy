@@ -28,7 +28,7 @@ class UI {
 
         const books = StoredBooks;
 
-        console.log(books);
+        // console.log(books);
 
         books.forEach((book) => UI.addBookToList(book));
     }
@@ -59,6 +59,10 @@ document.addEventListener('DOMContentLoaded', UI.displayBooks);
 // Evnt: Add a Book
 
 document.querySelector('#book-form').addEventListener('submit', (e) => {
+
+    e.preventDefault();
+
+
     // Get form values
     const title = document.querySelector('#title').value;
     const author = document.querySelector('#author').value;
@@ -68,6 +72,10 @@ document.querySelector('#book-form').addEventListener('submit', (e) => {
     const book = new Book(title, author, isbn);
 
     console.log(book)
+
+    // Add Book to UI
+
+    UI.addBookToList(book);
 
 });
 
