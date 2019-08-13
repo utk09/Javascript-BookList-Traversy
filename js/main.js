@@ -25,7 +25,14 @@ class UI {
                 isbn: '234237493'
             }
         ];
-        
+
+        const books = StoredBooks;
+
+        books.forEach((book) => UI.addBookToList(book));
+    }
+
+    static addBookToList(book) {
+        const list = document.querySelector('#book-list');
     }
 }
 
