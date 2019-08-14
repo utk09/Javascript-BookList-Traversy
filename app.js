@@ -1,4 +1,6 @@
 // Book Class: Represents a Book
+
+// Copy of main.js -> Traversy
 class Book {
     constructor(title, author, isbn) {
       this.title = title;

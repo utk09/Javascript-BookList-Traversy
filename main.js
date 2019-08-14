@@ -175,3 +175,5 @@ document.querySelector("#book-list").addEventListener('click', e => {
     // Remove Alert
     UI.showAlert('Book Removed!', 'warning');
 })
+
+// Completed JS
