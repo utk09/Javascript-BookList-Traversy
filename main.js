@@ -66,31 +66,37 @@ class UI {
 
 document.addEventListener('DOMContentLoaded', UI.displayBooks);
 
-// Evnt: Add a Book
+// Event: Add a Book
 
 document.querySelector('#book-form').addEventListener('submit', (e) => {
-
     e.preventDefault();
-
 
     // Get form values
     const title = document.querySelector('#title').value;
     const author = document.querySelector('#author').value;
     const isbn = document.querySelector('#isbn').value;
 
-    // Instantiate Book
-    const book = new Book(title, author, isbn);
 
-    console.log(book)
+    // Validate
 
-    // Add Book to UI
+    if (title == '' | author == '' | isbn == '') {
+        console.log('Alert!!!')
+        alert('Please fill all the fields!');
+    } else {
+        // Instantiate Book
+        const book = new Book(title, author, isbn);
 
-    UI.addBookToList(book);
+        console.log(book)
 
-    // Clear fields
+        // Add Book to UI
 
-    UI.clearFields();
+        UI.addBookToList(book);
 
+        // Clear fields
+
+        UI.clearFields();
+
+    }
 });
 
 // Event: Remove a Book
