@@ -14,19 +14,21 @@ class Book {
 
 class UI {
     static displayBooks() {
-        const StoredBooks = [{
-                title: 'John Doe',
-                author: 'Jane Doe',
-                isbn: '123456789'
-            },
-            {
-                title: 'Vroom Vroom',
-                author: 'Lallantop',
-                isbn: '234237493'
-            }
-        ];
+        // const StoredBooks = [{
+        //         title: 'John Doe',
+        //         author: 'Jane Doe',
+        //         isbn: '123456789'
+        //     },
+        //     {
+        //         title: 'Vroom Vroom',
+        //         author: 'Lallantop',
+        //         isbn: '234237493'
+        //     }
+        // ];
 
-        const books = StoredBooks;
+        // const books = StoredBooks;
+
+        const books = Store.getBooks();
 
         // console.log(books);
 
@@ -76,6 +78,41 @@ class UI {
 
 // Store Class: Handles Storage
 
+class Store {
+    static getBooks() {
+        let books;
+        if (localStorage.getItem('books') === null) {
+            books = [];
+        } else {
+            books = JSON.parse(localStorage.getItem('books'));
+        }
+
+        return books;
+    }
+
+    static addBook(book) {
+        const books = Store.getBooks();
+
+        books.push(book);
+
+        localStorage.setItem('books', JSON.stringify(book));
+
+    }
+
+    static removeBook(isbn) {
+        const books = Store.getBooks();
+
+        books.forEach((book, index) => {
+            if (book.isbn === isbn) {
+                books.splice(index, 1);
+            }
+        });
+
+        localStorage.setItem('books', JSON.stringify(books));
+
+    }
+}
+
 // Event: Display Books
 
 document.addEventListener('DOMContentLoaded', UI.displayBooks);
@@ -107,6 +144,10 @@ document.querySelector('#book-form').addEventListener('submit', (e) => {
 
         UI.addBookToList(book);
 
+        // Add book to store / storage
+
+        Store.addBook(book);
+
         // success alert
 
         UI.showAlert('Thank You. Your Book has been added!', 'success');
@@ -122,7 +163,14 @@ document.querySelector('#book-form').addEventListener('submit', (e) => {
 
 document.querySelector("#book-list").addEventListener('click', e => {
     console.log(e.target);
+
+    // Remove Book from UI
+
     UI.deleteBook(e.target);
+
+    // Remove from Book Storage
+
+    Store.removeBook(e.target.parentElement.previousElementSibling.textContent)
 
     // Remove Alert
     UI.showAlert('Book Removed!', 'warning');
