@@ -64,7 +64,7 @@ class UI {
 
         // Timeout in 3 seconds
 
-        setTimeout(() => document.querySelector('.alert').remove(), 3000);
+        setTimeout(() => document.querySelector('.alert').remove(), 1500);
     }
 
     static clearFields() {
@@ -123,4 +123,7 @@ document.querySelector('#book-form').addEventListener('submit', (e) => {
 document.querySelector("#book-list").addEventListener('click', e => {
     console.log(e.target);
     UI.deleteBook(e.target);
+
+    // Remove Alert
+    UI.showAlert('Book Removed!', 'warning');
 })
