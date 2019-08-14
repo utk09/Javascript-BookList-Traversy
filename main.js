@@ -61,6 +61,10 @@ class UI {
         const container = document.querySelector('.container');
         const form = document.querySelector('#book-form');
         container.insertBefore(div, form);
+
+        // Timeout in 3 seconds
+
+        setTimeout(() => document.querySelector('.alert').remove(), 3000);
     }
 
     static clearFields() {
@@ -89,7 +93,7 @@ document.querySelector('#book-form').addEventListener('submit', (e) => {
 
     // Validate
 
-    if (title == '' | author == '' | isbn == '') {
+    if (title == '' || author == '' || isbn == '') {
         console.log('Alert!!!');
         // alert('Please fill all the fields!');
         UI.showAlert('Please fill all the fields!', 'danger');
@@ -102,6 +106,10 @@ document.querySelector('#book-form').addEventListener('submit', (e) => {
         // Add Book to UI
 
         UI.addBookToList(book);
+
+        // success alert
+
+        UI.showAlert('Thank You. Your Book has been added!', 'success');
 
         // Clear fields
 
